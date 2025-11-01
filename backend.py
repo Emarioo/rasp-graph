@@ -33,6 +33,9 @@ humid_data = []
 humid_last_timestamp_ms = 0
 humid_rate = 1.0
 
+CONFIG_PATH = "data/config.txt"
+TEMP_DATA_PATH = "data/temp.txt"
+
 def add_temp(temp_value):
     global temp_data
     global temp_last_timestamp_ms
@@ -131,13 +134,12 @@ def save_data():
     global humid_last_timestamp_ms
     global humid_rate
 
-    path = "data/temp.txt"
 
-    print(f"Saving {path}") # TODO: Log to a file
+    print(f"Saving {TEMP_DATA_PATH}") # TODO: Log to a file
 
-    os.makedirs(os.path.dirname(path), exist_ok=True)
+    os.makedirs(os.path.dirname(TEMP_DATA_PATH), exist_ok=True)
 
-    with open(path, "w") as f:
+    with open(TEMP_DATA_PATH, "w") as f:
         # TODO: Binary format
         f.write("# temperature timestamp of last data point (milliseconds since epoch)\n")
         f.write(f"{temp_last_timestamp_ms}\n")
@@ -163,13 +165,12 @@ def load_data():
     global humid_data
     global humid_rate
 
-    path = "data/temp.txt"
-    if not os.path.exists(path):
+    if not os.path.exists(TEMP_DATA_PATH):
         # no data
         return False
     
     # TODO: Binary format
-    with open(path, "r") as f:
+    with open(TEMP_DATA_PATH, "r") as f:
         text = f.read()
 
     lines = [ s for s in text.split("\n") if len(s) > 0 and s[0] != "#" ]
@@ -196,8 +197,10 @@ config = Config()
 
 def save_config():
     global config
-    path = "data/config.txt"
-    with open(path, "w") as f:
+    
+    os.makedirs(os.path.dirname(CONFIG_PATH), exist_ok=True)
+
+    with open(CONFIG_PATH, "w") as f:
         f.write(f"# y-min\n")
         f.write(f"{math.floor(config.ymin)}\n")
         f.write(f"# y-max\n")
@@ -212,11 +215,10 @@ def save_config():
 
 def load_config():
     global config
-    path = "data/config.txt"
-    if not os.path.exists(path):
+    if not os.path.exists(CONFIG_PATH):
         return False
     
-    with open(path, "r") as f:
+    with open(CONFIG_PATH, "r") as f:
         text = f.read()
         
     lines = [line for line in text.split("\n") if len(line) > 0 and line[0] != "#" ]
