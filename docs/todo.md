@@ -9,3 +9,14 @@
 
 # Future
 - [ ] Alarm if humidity is above 30% for 30 minutes.
+clock time on time line
+current value beside graph label
+3 sensors, 6 graphs
+handle sudden exceptions from DHT22 library with try catch
+easy way to start the App, bash script you can put on path or
+
+# Bugs
+- [ ] Tapping on slider opens and closes it. Probably triggers touch down and touch release.
+
+
+# Setup VENV with dependencies pyprojecttoml

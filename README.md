@@ -6,6 +6,11 @@ GUI Application for displaying temperature and humidity on a Raspberry PI.
 - Kivy
 - kivy-garden.graph
 - mesa libgl x11 dependencies?
+- gpiod
+
+pip3 install adafruit-circuitpython-dht
+sudo apt-get install libgpiod2
+
 
 **Windows**
 ```

@@ -1,9 +1,13 @@
-#########################
-#   Backend DATA code
-#########################
+'''
+   Backend DATA code
+
+   
+'''
 
 import random, os, math
 from datetime import datetime
+
+import driver
 
 def max_temperature() -> float:
     return 25.0
@@ -16,14 +20,6 @@ def max_humidity() -> float:
 
 def min_humidity() -> float:
     return 0.0
-
-def read_temperature() -> float:
-    # TODO: Check GPIO pins
-    return random.uniform(15.0, 25.0)
-
-def read_humidity() -> float:
-    # TODO: Check GPIO pins
-    return random.uniform(0.0, 100.0)
 
 temp_data = []
 temp_last_timestamp_ms = 0
